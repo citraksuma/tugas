@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>trahijab</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 0; background: #f3f3f3; }
+
+    .navbar {
+      background-color: teal; padding: 10px 20px; color: white;
+      display: flex; align-items: center; gap: 20px;
+    }
+
+    .navbar .logo {
+      font-size: 20px; font-weight: bold;
+    }
+    .navbar .logo span {
+      color: yellow; font-weight: bold;
+    }
+
+    .navbar input[type="text"] {
+      padding: 8px; width: 400px; border: none; border-radius: 2px;
+    }
+    .navbar button {
+      padding: 6px 12px; border: none; border-radius: 2px; background: white; color: teal; cursor: pointer;
+    }
+
+    .navbar .menu-right {
+      margin-left: auto; display: flex; gap: 20px; align-items: center;
+    }
+
+    .search-container { position: relative; }
+    .suggestions {
+      position: absolute; top: 35px; background: white;
+      width: 400px; border: 1px solid #ccc; display: none; z-index: 10;
+    }
+    .suggestions div {
+      padding: 8px; cursor: pointer;
+    }
+    .suggestions div:hover {
+      background-color: #f0f0f0;
+    }
+
+    .menu {
+      display: flex; justify-content: center; gap: 10px;
+      background-color: #dff; padding: 10px;
+    }
+    .menu button {
+      padding: 8px 12px; border: none; border-radius: 4px; background: teal; color: white;
+      cursor: pointer;
+    }
+
+    .slideshow {
+      width: 100%; max-height: 300px; overflow: hidden; margin: 10px 0;
+    }
+    .slideshow img {
+      width: 100%; display: none;
+    }
+    .slideshow img.active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .icon-menu {
+      display: flex; flex-wrap: wrap;
+      justify-content: space-around; padding: 20px; background-color: #fff;
+    }
+    .icon-item {
+      width: 22%; max-width: 90px; margin: 10px 0;
+      text-align: center; cursor: pointer;
+      transform: translateY(20px); opacity: 0;
+      animation: slideUp 0.5s ease forwards;
+    }
+    .icon-item:nth-child(n) { animation-delay: calc(0.1s * var(--i)); }
+
+    .icon-item img {
+      width: 60px; height: 60px; border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .icon-item:hover img {
+      transform: scale(1.1);
+    }
+    .icon-item p {
+      margin-top: 5px; font-size: 12px;
+    }
+
+    .products {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 20px; padding: 20px;
+    }
+
+    .product-card {
+      background: white; border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px; text-align: center; width: 200px;
+      transform: scale(1); transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: popUp 0.5s ease-in-out forwards;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100px; height: 100px; object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      background: #222; color: white;
+      text-align: center; padding: 20px; margin-top: 40px;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"> <span>trahijab.id</span></div>
+    <div class="search-container">
+      <input type="text" placeholder="Search for products, brands and more" onkeyup="showSuggestions(this.value)">
+      <div class="suggestions" id="suggestionsBox"></div>
+    </div>
+    <div class="menu-right">
+      <button>Login</button>
+      <div>More</div>
+      <div>🛒 Cart</div>
+    </div>
+  </div>
+
+  <div class="slideshow">
+    <img src="slide1.jpg" class="active">
+    <img src="slide2.jpg">
+    <img src="slide3.jpg">
+  </div>
+
+  <div class="icon-menu">
+    <div class="icon-item" style="--i:1"><img src="image/anak1.jfif"><p>Hijab Instan Anak</p></div>
+    <div class="icon-item" style="--i:2"><img src="image/anak2.jfif"><p>Bergo Anak</p></div>
+    <div class="icon-item" style="--i:3"><img src="image/dewasa1.jfif"><p>Hijab Kerut Pipi</p></div>
+    <div class="icon-item" style="--i:4"><img src="image/anak3.webp"><p>Hijab Kartun</p></div>
+    <div class="icon-item" style="--i:5"><img src="image/anak4.jfif"><p>Hijab Syar'i Anak</p></div>
+    <div class="icon-item" style="--i:6"><img src="image/dewasa2.jfif"><p>Pashiman Plisket</p></div>
+    <div class="icon-item" style="--i:7"><img src="image/dewasa3.jpg"><p>Pasmina Ceruty </p></div>
+    <div class="icon-item" style="--i:8"><img src="image/dewasa4.jfif"><p>Segi Empat Voal</p></div>
+  </div>
+
+  <div class="products">
+    <script>
+      const productData = [
+        ["image/bergoanak1.jfif", "Bergo Anak", "Rp 250.000"],
+        ["image/instananak.webp", "Hijab Instan anak", "Rp 150.000"],
+        ["image/bordir.jfif", "HIjab Bordir", "Rp 180.000"],
+        ["image/pasminaanak.jfif", "Pasmina Anak", "Rp 200.000"],
+        ["image/ceruty.jfif", "Pasmina Ceruty", "Rp 120.000"],
+        ["image/khimar.jfif", "Hijab Khimar Syar’ia", "Rp 300.000"],
+        ["image/satin.jfif", "Hijab Satin", "Rp 350.000"],
+        ["image/sport.jfif", "Hijab Sport Hijabers", "Rp 50.000"]
+      ];
+      for (let i = 0; i < 5; i++) {
+        productData.forEach(p => {
+          document.write(`<div class='product-card'><img src='${p[0]}'><h3>${p[1]}</h3><p>${p[2]}</p><button>Lihat Detail</button></div>`);
+        });
+      }
+    </script>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 trahijab.id - Jl. Penataran No. 123, Blitar</p>
+    <p>Kontak: 0867-3319-0092 | Email: citrakusuma033@gmail.com</p>
+  </div>
+
+  <script>
+    function showSuggestions(value) {
+      const suggestions = ["Sepatu", "Headset", "Jaket", "Baju", "Meja", "Keyboard"];
+      const box = document.getElementById("suggestionsBox");
+      box.innerHTML = "";
+      if (value) {
+        const filtered = suggestions.filter(item => item.toLowerCase().includes(value.toLowerCase()));
+        filtered.forEach(item => {
+          const div = document.createElement("div");
+          div.textContent = item;
+          div.onclick = () => { document.querySelector('input').value = item; box.style.display = 'none'; };
+          box.appendChild(div);
+        });
+        box.style.display = filtered.length ? "block" : "none";
+      } else {
+        box.style.display = "none";
+      }
+    }
+
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slideshow img');
+    setInterval(() => {
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }, 3000);
+  </script>
+</body>
+</html>
